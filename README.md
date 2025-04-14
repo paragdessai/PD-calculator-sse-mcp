@@ -117,11 +117,11 @@ The server appears and is connected successfully.
 
 ## 🖥️ **MCP Tool + Microsoft Copilot Studio Integration (Custom Connector)**
 
-For details on integrating Model Context Protocol (MCP) tools into Microsoft Copilot Studio using custom connectors, check out the official Microsoft documentation: 🔗 [Extend Copilot actions using MCP in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/agent-extend-action-mcp) 
+For details on integrating Model Context Protocol (MCP) tools into Microsoft Copilot Studio using custom connectors, check out the official Microsoft documentation: 🔗 [Extend Copilot actions using MCP in Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/agent-extend-action-mcp)
 
 # MCP Custom connector Copilot Studio Integration
 
-It shows how to set up the MVP spec for actions to work with custom connectors in **Copilot Studio**.
+It shows how to set up the MCP Tools for actions to work with custom connectors in **Copilot Studio**.
 
 ---
 
@@ -132,7 +132,7 @@ swagger: '2.0'
 
 info:
   title: Calculator Demo
-  description: MCP Test Specification, showing the MVP spec to work in Copilot Studio
+  description: MCP Test Specification, MCP tool to work in Copilot Studio
   version: 1.0.0
 
 host: localhost
@@ -175,7 +175,7 @@ paths:
             $ref: '#/definitions/QueryResponse'
         '201':
           description: Created and will follow callback
-      operationId: InvokeMCP
+      operationId: CalculatorDemo
       tags:
         - Agentic
         - McpSse
@@ -183,7 +183,6 @@ paths:
 securityDefinitions: {}
 security: []
 ```
-
 
 ## ☁️ Deploy to Azure (Optional)
 
