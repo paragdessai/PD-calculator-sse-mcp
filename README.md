@@ -215,6 +215,10 @@ tags:
 Do **not** use `"InvokeMCP"` as your `operationId`.  
 Choose a more specific and descriptive name to reflect the purpose of the action and avoid conflicts.
 
+> **Note:**  
+> This is a **sample demo custom MCP server** designed for demonstration, deployed into Azure and integration purposes with **Copilot Studio**.  
+> It is **not available as part of the product** and is intended solely for sample or prototyping use.
+> 
 ## ☁️ Deploy to Azure (Optional)
 
 Create an Azure App Service (Node.js 18+)
