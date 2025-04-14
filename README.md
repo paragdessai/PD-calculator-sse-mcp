@@ -17,8 +17,8 @@ This is a demo Node.js + TypeScript API using [Model Context Protocol SDK](https
 ---
 
 ## 📁 Project Structure
+![image](https://github.com/user-attachments/assets/8cb871fd-bc53-4dcb-a946-916be2ea8286)
 
-calculator-sse/ ├── src/ │ └── index.ts # Main Express server with MCP tools ├── dist/ # Compiled JS output (after build) ├── package.json ├── tsconfig.json └── README.md
 
 ---
 
@@ -46,13 +46,16 @@ npm run start
 
 The app will run at http://localhost:3001 (unless configured otherwise).
 
-🧪 MCP Tools
-🔹 calculate-bmi
+## 🧪 MCP Tools
+### 🔹 calculate-bmi
 Input:
+```json
 {
   "weightKg": 70,
   "heightM": 1.75
 }
+```
+
 Response:
 
 ```json
@@ -61,30 +64,36 @@ Response:
 }
 ```
 
-🔹 add
+### 🔹 add
 Input
+
+```json
 {
   "a": 5,
   "b": 3
 }
-Response:
+```
 
+Response:
+```json
 {
   "content": [{ "type": "text", "text": "8" }]
 }
-🔁 SSE Endpoint
+```
+
+## 🔁 SSE Endpoint
 The server supports Server-Sent Events (SSE) via:
 
 ```bash
 GET /sse
-
+```
 It establishes a live connection for streaming MCP interactions.
 
-☁️ Deploy to Azure (Optional)
+## ☁️ Deploy to Azure (Optional)
 Push your code to GitHub
 
 Create an Azure App Service (Node.js 18+)
-
 Set the startup command (if needed):
+```bash
 npm run build && npm run start
 
