@@ -1,8 +1,8 @@
 # Calculator MCP SSE Server
 # 🧮 Calculator SSE MCP Server
 
-This is a demo Node.js + TypeScript API using [Model Context Protocol SDK](https://www.npmjs.com/package/@modelcontextprotocol/sdk). It exposes simple calculation tools like BMI and addition through MCP, and supports real-time responses via Server-Sent Events (SSE).
-
+This is a demo Node.js + TypeScript MCP SDK using [Model Context Protocol SDK](https://www.npmjs.com/package/@modelcontextprotocol/sdk). It exposes simple calculation tools like BMI and addition through MCP, and supports real-time responses via Server-Sent Events (SSE).
+Explore the MCP architecture and best practices using the [MCP Architecture](https://modelcontextprotocol.io/docs/concepts/architecture) and SSE transport.
 ---
 
 ## 🚀 Features
@@ -44,7 +44,7 @@ Response:
 }
 ```
 
-### 🔹 add
+### 🔹 calculate-sum
 Input
 
 ```json
@@ -83,7 +83,7 @@ GET /sse
 
   ![image](https://github.com/user-attachments/assets/15ce02fb-216b-4f87-8190-ed948bfdcca8)
 
-## 🖥️ **GitHub Copilot Agent Integration (VSCode)**
+## 🖥️ **MCP Tool Github Copilot Agent Integration (VSCode)**
 1. Open the **Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P`).
 2. Type **"Add MCP Server"** and select it.
 3. Update `.vscode/mcp.json` with the following:
@@ -103,6 +103,9 @@ GET /sse
 **Result in Github Copilot Agent**
 <p align="left"> <img src="https://github.com/user-attachments/assets/e4c0977c-a388-42cb-8f98-9f6cb84d3978" width="400"/> </p>
 The server appears and is connected successfully.
+
+## 🖥️ **MCP Tool Microsoft Copilot Studio Integration (Custom Connector)**
+
 
 ## ☁️ Deploy to Azure (Optional)
 Create an Azure App Service (Node.js 18+)
