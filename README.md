@@ -179,6 +179,7 @@ securityDefinitions: {}
 security: []
 
 ```
+![image](https://github.com/user-attachments/assets/7727d5b9-f4c8-44bd-8293-aa4bd7957133)
 
 ## ☁️ Deploy to Azure (Optional)
 
