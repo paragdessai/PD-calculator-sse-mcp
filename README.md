@@ -129,17 +129,14 @@ It shows how to set up the MCP Tools for actions to work with custom connectors 
 
 ```yaml
 swagger: '2.0'
-
 info:
-  title: Calculator Demo
-  description: MCP Test Specification, MCP tool to work in Copilot Studio
-  version: 1.0.0
-
-host: localhost
+  title: MCPCalculatorDemo
+  description: Calculate BMI and Calculate sum using MCP SSE server
+  version: '1.0'
+host: calculatormcp-dummyurl.azurewebsites.net
 basePath: /
 schemes:
   - https
-
 definitions:
   QueryResponse:
     type: object
@@ -156,11 +153,10 @@ definitions:
         type: object
       error:
         type: object
-
 paths:
   /sse:
     get:
-      summary: MCP Server Actions
+      summary: MCP Server Actions for calculating BMI and sum
       parameters:
         - in: query
           name: sessionId
@@ -179,9 +175,9 @@ paths:
       tags:
         - Agentic
         - McpSse
-
 securityDefinitions: {}
 security: []
+
 ```
 
 ## ☁️ Deploy to Azure (Optional)
