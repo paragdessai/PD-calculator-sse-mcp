@@ -59,6 +59,10 @@ app.post("/mcpfy/v1/calculatordemo", async (req: Request, res: Response) => {
         res.status(400).send('No transport found for sessionId');
     }
 });
+app.get("/", (_req, res) => {
+    res.send("MCP Calculator Demo is running!");
+  });
+  
 
 const PORT = process.env.PORT || 3001;
 
