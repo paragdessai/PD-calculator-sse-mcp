@@ -1,5 +1,5 @@
-# calculator-sse
-# 🧮 Calculator SSE API
+# Calculator MCP SSE Server
+# 🧮 Calculator SSE MCP Server
 
 This is a demo Node.js + TypeScript API using [Model Context Protocol SDK](https://www.npmjs.com/package/@modelcontextprotocol/sdk). It exposes simple calculation tools like BMI and addition through MCP, and supports real-time responses via Server-Sent Events (SSE).
 
