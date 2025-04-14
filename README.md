@@ -86,6 +86,22 @@ The server supports Server-Sent Events (SSE) via:
 ```bash
 GET /sse
 ```
+---
+
+## 📌 Considerations
+
+- ✅ The `/sse` endpoint should **return the full URI** (including protocol and host) when initializing the **MCP transport**. This ensures compatibility when deploying across environments (e.g., localhost vs Azure).
+
+  **Example:**
+  ```ts
+  const protocol = req.protocol;
+  const host = req.get('host');
+  const fullUri = `${protocol}://${host}/mcp`;
+
+**Return /SSE with FULL URI**
+
+  ![image](https://github.com/user-attachments/assets/15ce02fb-216b-4f87-8190-ed948bfdcca8)
+
 It establishes a live connection for streaming MCP interactions.
 
 ## ☁️ Deploy to Azure (Optional)
