@@ -7,10 +7,11 @@ This is a demo Node.js + TypeScript API using [Model Context Protocol SDK](https
 
 ## 🚀 Features
 
+- ✅ **SSE (Server-Sent Events) Support**
 - ✅ **BMI Calculator Tool**
 - ✅ **Addition Tool**
-- ✅ **MCP Tool Integration**
-- ✅ **SSE (Server-Sent Events) Support**
+- ✅ **MCP Tool Github Copilot Agent Integration**
+- ✅ **MCP Tool Microsoft Copilot Studio Integration**
 - ✅ **Azure App Service Ready**
 
 ## 📁 Project Structure
@@ -83,7 +84,6 @@ GET /sse
   ![image](https://github.com/user-attachments/assets/15ce02fb-216b-4f87-8190-ed948bfdcca8)
 
 ## 🖥️ **GitHub Copilot Agent Integration (VSCode)**
-
 1. Open the **Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P`).
 2. Type **"Add MCP Server"** and select it.
 3. Update `.vscode/mcp.json` with the following:
