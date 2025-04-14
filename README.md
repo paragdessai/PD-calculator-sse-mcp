@@ -90,8 +90,6 @@ GET /sse
 It establishes a live connection for streaming MCP interactions.
 
 ## ☁️ Deploy to Azure (Optional)
-Push your code to GitHub
-
 Create an Azure App Service (Node.js 18+)
 Set the startup command (if needed):
 ```bash
