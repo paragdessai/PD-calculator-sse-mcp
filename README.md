@@ -13,34 +13,14 @@ This is a demo Node.js + TypeScript API using [Model Context Protocol SDK](https
 - ✅ **SSE (Server-Sent Events) Support**
 - ✅ **Azure App Service Ready**
 
----
-
 ## 📁 Project Structure
-![image](https://github.com/user-attachments/assets/8cb871fd-bc53-4dcb-a946-916be2ea8286)
+<p align="left"> <img src="https://github.com/user-attachments/assets/8cb871fd-bc53-4dcb-a946-916be2ea8286" width="200"/> </p>
 
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Install Dependencies
-
+## ⚙️Quick Start
 ```bash
-npm install
-```
-
-### 2. Build the Project
-
-```bash
-npm run build
-```
-
-Compiles TypeScript from src/ into dist/.
-
-### 3. Start the Server
-
-```bash
-npm run start
+npm install      # Install dependencies
+npm run build    # Compile TypeScript
+npm run start    # Start server (http://localhost:3001)
 ```
 
 The app will run at http://localhost:3001 (unless configured otherwise).
@@ -90,7 +70,7 @@ GET /sse
 
 ## 📌 Considerations
 
-- ✅ The `/sse` endpoint should **return the full URI** (including protocol and host) when initializing the **MCP transport**. This ensures compatibility when deploying across environments (e.g., localhost vs Azure).
+- ✅ The `/sse` endpoint should **return the full URI** (including protocol and host) when initializing the **MCP transport**. This ensures compatibility when deploying across environments (e.g., localhost vs Azure). It establishes a live connection for streaming MCP interactions.
 
   **Example:**
   ```ts
@@ -102,7 +82,27 @@ GET /sse
 
   ![image](https://github.com/user-attachments/assets/15ce02fb-216b-4f87-8190-ed948bfdcca8)
 
-It establishes a live connection for streaming MCP interactions.
+## 🖥️ **GitHub Copilot Agent Integration (VSCode)**
+
+1. Open the **Command Palette** (`Ctrl+Shift+P` or `Cmd+Shift+P`).
+2. Type **"Add MCP Server"** and select it.
+3. Update `.vscode/mcp.json` with the following:
+
+```json
+{
+    "servers": {
+        "my-mcp-server": {
+            "type": "sse",
+            "url": "http://localhost:3001/sse"
+        }
+    }
+}
+```
+<p align="left"> <img src="https://github.com/user-attachments/assets/5109619f-071e-41f9-aa92-f37a767306ac" width="400"/> </p>
+
+**Result in Github Copilot Agent**
+<p align="left"> <img src="https://github.com/user-attachments/assets/e4c0977c-a388-42cb-8f98-9f6cb84d3978" width="400"/> </p>
+The server appears and is connected successfully.
 
 ## ☁️ Deploy to Azure (Optional)
 Create an Azure App Service (Node.js 18+)
