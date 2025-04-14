@@ -11,7 +11,6 @@ This is a demo Node.js + TypeScript API using [Model Context Protocol SDK](https
 - ✅ **Addition Tool**
 - ✅ **MCP Tool Integration**
 - ✅ **SSE (Server-Sent Events) Support**
-- ✅ **TypeScript Project Structure**
 - ✅ **Azure App Service Ready**
 
 ---
