@@ -1,4 +1,4 @@
-# 🧮 Calculator SSE MCP Server
+# 🧮 Implementation of Calculator SSE MCP Server and Integration into Microsoft Copilot Studio and Github Copilot Agent
 
 This is a demo Node.js + TypeScript MCP SDK using [Model Context Protocol SDK](https://www.npmjs.com/package/@modelcontextprotocol/sdk). It exposes simple calculation tools like BMI and addition through MCP, and supports real-time responses via Server-Sent Events (SSE).
 Explore the MCP architecture and best practices using the [MCP Architecture](https://modelcontextprotocol.io/docs/concepts/architecture) and SSE transport
