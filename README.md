@@ -226,3 +226,9 @@ Set the startup command (if needed):
 
 ```bash
 npm run build && npm run start
+```
+
+### SSE Deployment Update
+
+The SSE deployment to Azure with the **West US 2** region using the **Basic plan** was successful and tested without issues.  
+
