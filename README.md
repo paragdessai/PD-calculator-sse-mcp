@@ -297,3 +297,5 @@ If successful, you'll receive a response with a `"message"` confirming that the 
 #### Postman Response:
 ![Postman Output](https://github.com/user-attachments/assets/efc412ed-28f7-44cd-ba89-d92d3bae8418)
 
+Alternatively, you can use MCP Inspector to test, https://github.com/modelcontextprotocol/inspector
+
