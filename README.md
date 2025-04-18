@@ -215,10 +215,6 @@ tags:
 Do **not** use `"InvokeMCP"` as your `operationId`.  
 Choose a more specific and descriptive name to reflect the purpose of the action and avoid conflicts.
 
-> **Note:**  
-> This is a **sample demo custom MCP server** designed for demonstration, deployed into Azure and integration purposes with **Copilot Studio**.  
-> It is **not available as part of the product** and is intended solely for sample or prototyping use.
-> 
 ## ☁️ Deploy to Azure (Optional)
 
 Create an Azure App Service (Node.js 18+)
@@ -298,4 +294,15 @@ If successful, you'll receive a response with a `"message"` confirming that the 
 ![Postman Output](https://github.com/user-attachments/assets/efc412ed-28f7-44cd-ba89-d92d3bae8418)
 
 Alternatively, you can use MCP Inspector to test, https://github.com/modelcontextprotocol/inspector
+
+## Disclaimer
+
+This is an **unsupported**, **experimental**, and **not an official Microsoft product**. It is provided **"as is"**, without support and without any warranties, whether express or implied. This includes, but is not limited to, warranties of **merchantability**, **fitness for a particular purpose**, and **non-infringement**.
+
+In no event shall the authors or copyright holders be liable for any **claims**, **damages**, or other **liabilities**, whether in contract, tort, or otherwise, arising from, out of, or in connection with the Software or the use or other dealings in the Software.
+
+> ⚠️ **Important Note:**  
+> This is a sample demo **custom MCP server** created for **demonstration purposes**. It is deployed into **Microsoft Azure** and intended solely for **integration with Copilot Studio** during prototyping or sample scenarios.  
+> This component is **not part of any official Microsoft product** and is **not available for production use**.
+
 
