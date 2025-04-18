@@ -232,3 +232,68 @@ npm run build && npm run start
 
 The SSE deployment to Azure with the **West US 2** region using the **Basic plan** was successful and tested without issues.  
 
+
+## 🛠️ Troubleshooting
+
+### ✅ How to Check if Your SSE Server is Running Properly
+
+Follow these steps to verify that your SSE (Server-Sent Events) server is functioning correctly:
+
+---
+
+### 🔍 Step 1: Browse the SSE Endpoint
+
+- Open your browser and navigate to:  
+  - `http://localhost:3000/sse` (if running locally), or  
+  - Your deployed **Azure URL**.
+
+- Open **Developer Tools** → **Network** tab.
+
+- Look for an **EventStream** connection.
+
+- Under the `Event` section, you should see:
+  - **Endpoint**: SSE endpoint
+  - **Data**: Your Full URI endpoint
+
+![SSE Browser Network Trace](https://github.com/user-attachments/assets/680c6f25-ebba-4494-83d2-2244ad3fb98e)
+
+---
+
+### 🧪 Step 2: Test SSE Endpoint via Postman
+
+1. Copy the **Full URI** (from the EventStream `data`).
+2. Use Postman to send a `POST` request to that URI.
+
+**Example URL**:
+```
+http://calculatormcp-dummyurl.azurewebsites.net/mcpfy/v1/calculatordemo?sessionId=620c84e1-81e2-484d-8737-a7fbc93165b1
+```
+
+**Example Request Payload**:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "2",
+  "method": "tools/call",
+  "params": {
+    "name": "calculate-bmi",
+    "arguments": {
+      "weightKg": 180,
+      "heightM": 1.8
+    }
+  }
+}
+```
+
+If successful, you'll receive a response with a `"message"` confirming that the server is working correctly.
+
+---
+
+### 🖼️ Sample Screenshots
+
+#### Browser Network Event Trace:
+![Event Trace](https://github.com/user-attachments/assets/13ee9c86-093d-41f9-8096-782f0bc192e3)
+
+#### Postman Response:
+![Postman Output](https://github.com/user-attachments/assets/efc412ed-28f7-44cd-ba89-d92d3bae8418)
+
