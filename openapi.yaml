@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: MCPCalculatorDemo
+  title: MCPServerDEmo
   description: Dedicated endpoints for calculate-sum, calculate-bmi & country-facts
   version: '1.0'
 host: YOUR_APP_NAME.azurewebsites.net    # e.g. my-mcp-service-xyz.eastus-01.azurewebsites.net
