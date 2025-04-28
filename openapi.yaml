@@ -1,103 +1,18 @@
 swagger: '2.0'
 info:
-  title: MCP Calculator Demo
-  description: MCP demo with calculate-sum, calculate-bmi & country-facts tools
+  title: MCPCalculatorDemo
+  description: Dedicated endpoints for calculate-sum, calculate-bmi & country-facts
   version: '1.0'
 host: YOUR_APP_NAME.azurewebsites.net    # e.g. my-mcp-service-xyz.eastus-01.azurewebsites.net
 basePath: /
 schemes:
   - https
 
-definitions:
-  QueryRequest:
-    type: object
-    required:
-      - jsonrpc
-      - id
-      - method
-      - params
-    properties:
-      jsonrpc:
-        type: string
-        example: "2.0"
-      id:
-        type: string
-        example: "1"
-      method:
-        type: string
-        description: Always "tools/call"
-      params:
-        type: object
-        required:
-          - name
-          - arguments
-        properties:
-          name:
-            type: string
-            description: Tool name (calculate-sum, calculate-bmi, country-facts)
-          arguments:
-            type: object
-            description: Arguments for the chosen tool
-            properties:
-              # calculate-sum args
-              a:
-                type: number
-                description: First number to sum
-              b:
-                type: number
-                description: Second number to sum
-              # calculate-bmi args
-              height:
-                type: number
-                description: Height in meters
-              weight:
-                type: number
-                description: Weight in kilograms
-              # country-facts args
-              country:
-                type: string
-                description: Name of the country
-            additionalProperties: false
-
-  QueryResponse:
-    type: object
-    properties:
-      jsonrpc:
-        type: string
-      id:
-        type: string
-      result:
-        type: object
-        properties:
-          content:
-            type: array
-            items:
-              type: object
-              properties:
-                type:
-                  type: string
-                text:
-                  type: string
-      error:
-        type: object
-
 paths:
-  /sse:
-    get:
-      summary: Open server-sent events transport
-      parameters:
-        - name: sessionId
-          in: query
-          type: string
-          required: false
-      responses:
-        '200':
-          description: SSE stream open
-      operationId: StartSSE
-
-  /mcpfy/v1/calculatordemo:
+  /sum:
     post:
-      summary: Invoke an MCP tool (sum, bmi, or country-facts)
+      summary: Calculate the sum of two numbers
+      operationId: calculateSum
       consumes:
         - application/json
       produces:
@@ -107,15 +22,109 @@ paths:
           in: query
           type: string
           required: true
-          description: Identifies which SSE stream to send the result back on
+          description: SSE session ID
         - name: body
           in: body
           required: true
+          description: Object with numbers to sum
           schema:
-            $ref: '#/definitions/QueryRequest'
+            type: object
+            properties:
+              a:
+                type: number
+                description: First number
+              b:
+                type: number
+                description: Second number
+            required:
+              - a
+              - b
       responses:
         '200':
-          description: Tool result
+          description: Sum result
           schema:
-            $ref: '#/definitions/QueryResponse'
-      operationId: CallMCPTool
+            type: object
+            properties:
+              sum:
+                type: number
+
+  /bmi:
+    post:
+      summary: Calculate Body Mass Index (BMI)
+      operationId: calculateBmi
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: sessionId
+          in: query
+          type: string
+          required: true
+          description: SSE session ID
+        - name: body
+          in: body
+          required: true
+          description: Object with height and weight
+          schema:
+            type: object
+            properties:
+              height:
+                type: number
+                description: Height in meters
+              weight:
+                type: number
+                description: Weight in kilograms
+            required:
+              - height
+              - weight
+      responses:
+        '200':
+          description: BMI result
+          schema:
+            type: object
+            properties:
+              bmi:
+                type: number
+
+  /country-facts:
+    post:
+      summary: Get three facts about a country
+      operationId: getCountryFacts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: sessionId
+          in: query
+          type: string
+          required: true
+          description: SSE session ID
+        - name: body
+          in: body
+          required: true
+          description: Object with country name
+          schema:
+            type: object
+            properties:
+              country:
+                type: string
+                description: Country to fetch facts for
+            required:
+              - country
+      responses:
+        '200':
+          description: Country facts result
+          schema:
+            type: object
+            properties:
+              capital:
+                type: string
+              region:
+                type: string
+              population:
+                type: integer
+
+securityDefinitions: {}
+security: []
