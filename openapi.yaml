@@ -1,118 +1,82 @@
 swagger: '2.0'
 info:
-  title: MCPServerDEmo
-  description: Dedicated endpoints for calculate-sum, calculate-bmi & country-facts
+  title: MCPCalculatorDemo
+  description: Calculate BMI, Calculate sum, and Country facts using MCP SSE server
   version: '1.0'
-host: my-mcp-service-btgmhmesdfhsh9ef.eastus-01.azurewebsites.net    # e.g. my-mcp-service-xyz.eastus-01.azurewebsites.net
+host: my-mcp-service-btgmhmesdfhsh9ef.eastus-01.azurewebsites.net
 basePath: /
 schemes:
   - https
 
-paths:
-  /sum:
-    post:
-      summary: Calculate the sum of two numbers
-      operationId: calculateSum
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: sessionId
-          in: query
-          type: string
-          required: true
-          description: SSE session ID
-        - name: body
-          in: body
-          required: true
-          description: Object with numbers to sum
-          schema:
-            type: object
-            properties:
-              a:
-                type: number
-                description: First number
-              b:
-                type: number
-                description: Second number
-            required:
-              - a
-              - b
-      responses:
-        '200':
-          description: Sum result
-          schema:
-            type: object
-            properties:
-              sum:
-                type: number
+definitions:
+  QueryResponse:
+    type: object
+    properties:
+      jsonrpc:
+        type: string
+      id:
+        type: string
+      method:
+        type: string
+      params:
+        type: object
+      result:
+        type: object
+      error:
+        type: object
 
-  /bmi:
-    post:
-      summary: Calculate Body Mass Index (BMI)
-      operationId: calculateBmi
-      consumes:
-        - application/json
+paths:
+  /sse:
+    get:
+      summary: MCP Server Actions for calculating BMI, sum, and country facts
+      operationId: CalculatorDemo_SSE
+      tags:
+        - Agentic
+        - McpSse
+      parameters:
+        - in: query
+          name: sessionId
+          type: string
+          required: false
       produces:
         - application/json
-      parameters:
-        - name: sessionId
-          in: query
-          type: string
-          required: true
-          description: SSE session ID
-        - name: body
-          in: body
-          required: true
-          description: Object with height and weight
-          schema:
-            type: object
-            properties:
-              height:
-                type: number
-                description: Height in meters
-              weight:
-                type: number
-                description: Weight in kilograms
-            required:
-              - height
-              - weight
       responses:
         '200':
-          description: BMI result
+          description: Immediate Response
           schema:
-            type: object
-            properties:
-              bmi:
-                type: number
+            $ref: '#/definitions/QueryResponse'
+        '201':
+          description: Created and will follow callback
 
   /country-facts:
     post:
-      summary: Get three facts about a country
-      operationId: getCountryFacts
+      summary: Get three facts about a country via MCP
+      operationId: GetCountryFacts
+      tags:
+        - Agentic
+        - McpSse
       consumes:
         - application/json
       produces:
         - application/json
       parameters:
-        - name: sessionId
-          in: query
+        - in: query
+          name: sessionId
           type: string
           required: true
-          description: SSE session ID
-        - name: body
-          in: body
+          description: SSE session ID for streaming results
+        - in: body
+          name: body
           required: true
-          description: Object with country name
+          description: JSON object containing the country name
           schema:
             type: object
+            required:
+              - country
             properties:
               country:
                 type: string
-                description: Country to fetch facts for
-            required:
-              - country
+                description: Name of the country to fetch facts for
       responses:
         '200':
           description: Country facts result
