@@ -2,7 +2,7 @@
 import express, { Request, Response } from "express";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
-import fetch from "node-fetch";
+//import fetch from "node-fetch";
 import { z } from "zod";
 
 // 1️⃣ Create the MCP server and register your tools:
