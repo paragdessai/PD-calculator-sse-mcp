@@ -1,43 +1,121 @@
 swagger: '2.0'
 info:
-  title: MCPCalculatorDemo
-  description: MCP demo with BMI, sum & country-facts tools
+  title: MCP Calculator Demo
+  description: MCP demo with calculate-sum, calculate-bmi & country-facts tools
   version: '1.0'
-host: my-mcp-service-btgmhmesdfhsh9ef.eastus-01.azurewebsites.net   # e.g. my-mcp-service-xyz.eastus-01.azurewebsites.net
+host: YOUR_APP_NAME.azurewebsites.net    # e.g. my-mcp-service-xyz.eastus-01.azurewebsites.net
 basePath: /
 schemes:
   - https
+
 definitions:
+  QueryRequest:
+    type: object
+    required:
+      - jsonrpc
+      - id
+      - method
+      - params
+    properties:
+      jsonrpc:
+        type: string
+        example: "2.0"
+      id:
+        type: string
+        example: "1"
+      method:
+        type: string
+        description: Always "tools/call"
+      params:
+        type: object
+        required:
+          - name
+          - arguments
+        properties:
+          name:
+            type: string
+            description: Tool name (calculate-sum, calculate-bmi, country-facts)
+          arguments:
+            type: object
+            description: Arguments for the chosen tool
+            properties:
+              # calculate-sum args
+              a:
+                type: number
+                description: First number to sum
+              b:
+                type: number
+                description: Second number to sum
+              # calculate-bmi args
+              height:
+                type: number
+                description: Height in meters
+              weight:
+                type: number
+                description: Weight in kilograms
+              # country-facts args
+              country:
+                type: string
+                description: Name of the country
+            additionalProperties: false
+
   QueryResponse:
     type: object
     properties:
-      jsonrpc: { type: string }
-      id:      { type: string }
-      method:  { type: string }
-      params:  { type: object }
-      result:  { type: object }
-      error:   { type: object }
+      jsonrpc:
+        type: string
+      id:
+        type: string
+      result:
+        type: object
+        properties:
+          content:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                text:
+                  type: string
+      error:
+        type: object
+
 paths:
   /sse:
     get:
-      summary: MCP Server Actions
+      summary: Open server-sent events transport
       parameters:
-        - in: query
-          name: sessionId
+        - name: sessionId
+          in: query
           type: string
           required: false
-      produces:
-        - application/json
       responses:
         '200':
-          description: Immediate Response
+          description: SSE stream open
+      operationId: StartSSE
+
+  /mcpfy/v1/calculatordemo:
+    post:
+      summary: Invoke an MCP tool (sum, bmi, or country-facts)
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: sessionId
+          in: query
+          type: string
+          required: true
+          description: Identifies which SSE stream to send the result back on
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/QueryRequest'
+      responses:
+        '200':
+          description: Tool result
           schema:
             $ref: '#/definitions/QueryResponse'
-        '201':
-          description: Created and will follow callback
-      operationId: InvokeMCP
-      tags:
-        - Agentic
-        - McpSse
-securityDefinitions: {}
-security: []
+      operationId: CallMCPTool
