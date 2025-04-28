@@ -3,7 +3,7 @@ info:
   title: MCPServerDEmo
   description: Dedicated endpoints for calculate-sum, calculate-bmi & country-facts
   version: '1.0'
-host: YOUR_APP_NAME.azurewebsites.net    # e.g. my-mcp-service-xyz.eastus-01.azurewebsites.net
+host: my-mcp-service-btgmhmesdfhsh9ef.eastus-01.azurewebsites.net    # e.g. my-mcp-service-xyz.eastus-01.azurewebsites.net
 basePath: /
 schemes:
   - https
