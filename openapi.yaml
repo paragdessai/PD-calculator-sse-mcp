@@ -1,13 +1,12 @@
 swagger: '2.0'
 info:
   title: MCPCalculatorDemo
-  description: Calculate BMI, Calculate sum, and Country facts using MCP SSE server
+  description: Calculate BMI and Calculate sum using MCP SSE server
   version: '1.0'
-host: my-mcp-service-btgmhmesdfhsh9ef.eastus-01.azurewebsites.net
+host: calculatormcp-dummyurl.azurewebsites.net
 basePath: /
 schemes:
   - https
-
 definitions:
   QueryResponse:
     type: object
@@ -24,15 +23,10 @@ definitions:
         type: object
       error:
         type: object
-
 paths:
   /sse:
     get:
-      summary: MCP Server Actions for calculating BMI, sum, and country facts
-      operationId: CalculatorDemo_SSE
-      tags:
-        - Agentic
-        - McpSse
+      summary: MCP Server Actions for calculating BMI and sum
       parameters:
         - in: query
           name: sessionId
@@ -47,48 +41,9 @@ paths:
             $ref: '#/definitions/QueryResponse'
         '201':
           description: Created and will follow callback
-
-  /country-facts:
-    post:
-      summary: Get three facts about a country via MCP
-      operationId: GetCountryFacts
+      operationId: CalculatorDemo
       tags:
         - Agentic
         - McpSse
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: query
-          name: sessionId
-          type: string
-          required: true
-          description: SSE session ID for streaming results
-        - in: body
-          name: body
-          required: true
-          description: JSON object containing the country name
-          schema:
-            type: object
-            required:
-              - country
-            properties:
-              country:
-                type: string
-                description: Name of the country to fetch facts for
-      responses:
-        '200':
-          description: Country facts result
-          schema:
-            type: object
-            properties:
-              capital:
-                type: string
-              region:
-                type: string
-              population:
-                type: integer
-
 securityDefinitions: {}
 security: []
