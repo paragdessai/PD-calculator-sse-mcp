@@ -30,6 +30,22 @@ server.tool("calculate-sum",
         content: [{ type: "text", text: String(a + b) }]
     })
 );
+server.tool(
+    "country-facts",
+    { country: z.string() },
+    async ({ country }) => {
+      const res = await fetch(
+        `https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`
+      );
+      const [info] = await res.json();
+      const facts = [
+        `Capital city: ${info.capital?.[0] || "Unknown"}`,
+        `Region: ${info.region}`,
+        `Population: ${info.population.toLocaleString()}`
+      ];
+      return { content: facts.map(text => ({ type: "text", text })) };
+    }
+  );
 const app = express();
 
 // to support multiple simultaneous connections we have a lookup object from
